@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import ChatBox from './ChatBox';
+import ChatBox from './components/ChatBox';
+import InputBar from './components/InputBar';
 
 function App() {
   const [messages, setMessages] = useState([
@@ -10,9 +9,19 @@ function App() {
     { id: 2, sender: 'bot', text: 'İyiyim, teşekkürler! Size nasıl yardımcı olabilirim?' }
   ]);
 
+  const handleSend = (text) => {
+    const newMessage = {
+      id: Date.now(),
+      sender: "user",
+      text,
+    };
+    setMessages((prev) => [...prev, newMessage]);
+  };
+
   return (
     <>
       <ChatBox messages={messages} />
+      <InputBar onSend={handleSend} />
     </>
   );
 }
