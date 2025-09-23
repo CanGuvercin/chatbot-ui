@@ -16,7 +16,19 @@ function App() {
       text,
     };
     setMessages((prev) => [...prev, newMessage]);
+  
+    setTimeout(() => {
+    const botReply = {
+      id: Date.now() + 1,
+      sender: "bot",
+      text: "Bunu bana sordun: " + text,
+    };
+    setMessages((prev) => [...prev, botReply]);
+  }, 1000);
+
   };
+
+  //week2
 
   return (
     <>
