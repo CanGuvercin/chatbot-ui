@@ -1,0 +1,15 @@
+async function sendData() {
+  const response = await fetch("https://senin-n8n-domainin.com/webhook/endpointID", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      userMessage: "Merhaba dünya!",
+      timestamp: new Date().toISOString()
+    })
+  });
+
+  const data = await response.json(); // n8n cevabı JSON ise
+  console.log(data);
+}
