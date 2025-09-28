@@ -9,7 +9,7 @@ function App() {
     { id: 2, sender: 'bot', text: 'İyiyim, teşekkürler! Size nasıl yardımcı olabilirim?' }
   ]);
 
- const handleSend = async (text) => {
+const handleSend = async (text) => {
   const newMessage = {
     id: Date.now(),
     sender: "user",
@@ -18,24 +18,32 @@ function App() {
   setMessages((prev) => [...prev, newMessage]);
 
   try {
-    // n8n webhook URL'nizi buraya yazın
-    const response = await fetch('YOUR_N8N_WEBHOOK_URL', {
+    const response = await fetch('https://mustafacanguvercin.app.n8n.cloud/webhook/chatbot', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ 
         message: text,
-        userId: 'user123' // opsiyonel
+        userId: 'user123'
       }),
     });
 
-    const data = await response.json();
+    const rawText = await response.text();
+    const parsedData = JSON.parse(rawText);
+    console.log('parsedData:', parsedData);
+console.log('parsedData.response:', parsedData.response);
+console.log('typeof parsedData.response:', typeof parsedData.response);
+
+const responseText = typeof parsedData.response === 'object' 
+  ? JSON.stringify(parsedData.response) 
+  : parsedData.response;
     
+    // BOT MESAJINI EKLE
     const botReply = {
       id: Date.now() + 1,
       sender: "bot",
-      text: data.response || "Üzgünüm, bir hata oluştu.",
+      text: parsedData.response || "Cevap bulunamadı.",
     };
     setMessages((prev) => [...prev, botReply]);
     
