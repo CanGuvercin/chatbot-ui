@@ -9,6 +9,43 @@ function App() {
     { id: 2, sender: 'bot', text: 'İyiyim, teşekkürler! Size nasıl yardımcı olabilirim?' }
   ]);
 
+  // App.jsx'e ekleyin
+const [isAuthenticated, setIsAuthenticated] = useState(false);
+const [credentials, setCredentials] = useState({ username: '', password: '' });
+
+const handleLogin = (e) => {
+  e.preventDefault();
+  // Basit hard-coded authentication
+  if (credentials.username === 'admin' && credentials.password === '123456') {
+    setIsAuthenticated(true);
+  } else {
+    alert('Yanlış kullanıcı adı veya şifre');
+  }
+};
+
+// Ana return'de:
+if (!isAuthenticated) {
+  return (
+    <div className="login-form">
+      <form onSubmit={handleLogin}>
+        <input 
+          type="text" 
+          placeholder="Kullanıcı adı" 
+          value={credentials.username}
+          onChange={(e) => setCredentials({...credentials, username: e.target.value})}
+        />
+        <input 
+          type="password" 
+          placeholder="Şifre"
+          value={credentials.password} 
+          onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+        />
+        <button type="submit">Giriş</button>
+      </form>
+    </div>
+  );
+}
+
 const handleSend = async (text) => {
   const newMessage = {
     id: Date.now(),
