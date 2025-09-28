@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import ChatBox from './components/ChatBox';
 import InputBar from './components/InputBar';
+import { useEffect } from 'react';
+
 
 function App() {
   const [messages, setMessages] = useState([
