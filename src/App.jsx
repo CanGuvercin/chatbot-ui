@@ -5,6 +5,7 @@ import InputBar from './components/InputBar';
 import { useEffect } from 'react';
 
 //need deeper automation options
+// maybe personal type selection
 
 function App() {
   const [messages, setMessages] = useState([
