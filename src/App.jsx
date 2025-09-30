@@ -4,6 +4,7 @@ import ChatBox from './components/ChatBox';
 import InputBar from './components/InputBar';
 import { useEffect } from 'react';
 
+//need deeper automation options
 
 function App() {
   const [messages, setMessages] = useState([
