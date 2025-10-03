@@ -103,6 +103,16 @@ const responseText = typeof parsedData.response === 'object'
 
   return (
     <>
+      <button 
+        className="reset-btn" 
+        onClick={() => setMessages([
+          { id: 1, sender: 'user', text: 'Merhaba, nasılsın?' },
+          { id: 2, sender: 'bot', text: 'İyiyim, teşekkürler! Size nasıl yardımcı olabilirim?' }
+        ])}
+        style={{ marginBottom: '1rem' }}
+      >
+        Reset Chat
+      </button>
       <ChatBox messages={messages} />
       <InputBar onSend={handleSend} />
     </>
