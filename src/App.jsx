@@ -50,6 +50,8 @@ if (!isAuthenticated) {
   );
 }
 
+//handle function should be considered again.
+
 const handleSend = async (text) => {
   const newMessage = {
     id: Date.now(),
