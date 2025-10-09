@@ -3,6 +3,16 @@ import './App.css'
 import ChatBox from './components/ChatBox';
 import InputBar from './components/InputBar';
 import { useEffect } from 'react';
+import DarkMode from './components/DarkMode';
+
+// Place DarkMode toggle button at the top right
+function DarkModeToggle() {
+  return (
+    <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 100 }}>
+      <DarkMode />
+    </div>
+  );
+}
 
 //need deeper automation options
 // maybe personal type selection
